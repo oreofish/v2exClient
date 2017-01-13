@@ -5,6 +5,7 @@ import React from 'react'
 import { Platform, View, ScrollView, Text, Image } from 'react-native'
 import { Images } from '../Themes'
 import styles from './Styles/AllComponentsScreenStyle'
+import PageContainer from '../Lib/PageContainer'
 
 // Components to show examples (only real point of merge conflict)
 import '../Components/AlertMessage'
@@ -32,7 +33,7 @@ class AllComponentsScreen extends React.Component {
 
   render () {
     return (
-      <View style={styles.mainContainer}>
+      <PageContainer isTab={true}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.section}>
@@ -50,7 +51,7 @@ class AllComponentsScreen extends React.Component {
           {ExamplesRegistry.render()}
 
         </ScrollView>
-      </View>
+      </PageContainer>
     )
   }
 }

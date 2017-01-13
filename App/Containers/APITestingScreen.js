@@ -11,6 +11,7 @@ import FJSON from 'format-json'
 
 // Styles
 import styles from './Styles/APITestingScreenStyle'
+import PageContainer from '../Lib/PageContainer'
 
 // API buttons here:
 const endpoints = [
@@ -63,7 +64,7 @@ export default class APITestingScreen extends React.Component {
 
   render () {
     return (
-      <View style={styles.mainContainer}>
+      <PageContainer isTab={true}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
 
@@ -79,7 +80,7 @@ export default class APITestingScreen extends React.Component {
           {this.renderButtons()}
           <APIResult ref='result' />
         </ScrollView>
-      </View>
+      </PageContainer>
     )
   }
 }

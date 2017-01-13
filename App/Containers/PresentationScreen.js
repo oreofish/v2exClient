@@ -4,6 +4,7 @@ import React from 'react'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
+import PageContainer from '../Lib/PageContainer'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // Styles
@@ -12,7 +13,7 @@ import styles from './Styles/PresentationScreenStyle'
 export default class PresentationScreen extends React.Component {
   render () {
     return (
-      <View style={styles.mainContainer}>
+      <PageContainer isTab={true}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.centered}>
@@ -25,18 +26,6 @@ export default class PresentationScreen extends React.Component {
               are available below.
             </Text>
           </View>
-
-          <RoundedButton onPress={NavigationActions.componentExamples}>
-            Component Examples Screen
-          </RoundedButton>
-
-          <RoundedButton onPress={NavigationActions.usageExamples}>
-            Usage Examples Screen
-          </RoundedButton>
-
-          <RoundedButton onPress={NavigationActions.apiTesting}>
-            API Testing Screen
-          </RoundedButton>
 
           <RoundedButton onPress={NavigationActions.theme}>
             Theme Screen
@@ -51,7 +40,7 @@ export default class PresentationScreen extends React.Component {
           </View>
 
         </ScrollView>
-      </View>
+      </PageContainer>
     )
   }
 }

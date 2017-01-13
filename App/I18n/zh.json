@@ -1,1 +1,26 @@
-{}
+{
+   "signIn": "登录",
+   "logOut": "退出",
+   "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
+   "progressiveImageComponent": "Progressive Image Component",
+   "api": "API",
+   "locale": "本地化",
+   "rnVectorIcons": "RN Vector Icons",
+   "loginWithFacebook": "Login with Facebook",
+   "rnAnimatable": "RN Animatable",
+   "igniteGenerated": "Ignite Generate Screens",
+   "forgotPassword": "Forgot Password",
+   "username": "用户名",
+   "password": "密码",
+   "cancel": "取消",
+   "welcome": "欢迎",
+   "login": "Login",
+   "tempIndicator": "C",
+   "componentExamples": "Component Examples",
+   "usageExamples": "Usage Examples",
+   "apiTesting": "API Testing",
+   "themeSettings": "Theme Settings",
+   "deviceDetails": "Device Details",
+   "noItems": "No Items",
+   "search": "Search"
+}

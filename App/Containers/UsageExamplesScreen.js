@@ -14,6 +14,7 @@ import * as Animatable from 'react-native-animatable'
 // Enable when you have configured Xcode
 // import PushNotification from 'react-native-push-notification'
 import I18n from 'react-native-i18n'
+import PageContainer from '../Lib/PageContainer'
 
 // Styles
 import styles from './Styles/UsageExamplesScreenStyle'
@@ -125,7 +126,7 @@ class UsageExamplesScreen extends React.Component {
 
   render () {
     return (
-      <View style={styles.mainContainer}>
+      <PageContainer isTab={true}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.section}>
@@ -136,7 +137,7 @@ class UsageExamplesScreen extends React.Component {
           </View>
           {this.renderUsageExamples()}
         </ScrollView>
-      </View>
+      </PageContainer>
     )
   }
 }
