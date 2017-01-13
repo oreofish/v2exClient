@@ -9,6 +9,7 @@ import {Actions} from 'react-native-router-flux'
 
 import PlatformStyle from '../Lib/PlatformStyle'
 // import NodeListManager from '../../../utilities/node_list_manager'
+import V2exApi from '../Services/V2exApi'
 
 import HomepageNodeData from '../Fixtures/homepage_node_data.json'
 import GiftedListView from '../Lib/GiftedListView'
@@ -35,7 +36,11 @@ class NodesScreen extends Component {
 
   async initializeNodes () {
     try {
-      // this.nodes = await NodeListManager.getNodes()
+      const api = V2exApi.create()
+      this.nodes = await api.getNodes()
+      console.log('constructor:1', '-----------------------')
+      console.log('initializeNodes:', this.nodes)
+      console.log('constructor:2', '----------------------- ')
     } catch (error) {
       console.log('error:', error)
     }
