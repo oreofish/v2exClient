@@ -13,7 +13,7 @@ import styles from './Styles/PresentationScreenStyle'
 export default class PresentationScreen extends React.Component {
   render () {
     return (
-      <PageContainer isTab={true}>
+      <PageContainer isTab>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.centered}>

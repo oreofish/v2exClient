@@ -2,23 +2,23 @@
  * @providesModule wetoo-style
  */
 
-import {StyleSheet, Platform} from 'react-native';
+import {StyleSheet, Platform} from 'react-native'
 
 const PlatformStyle = {
   create: (styles) => {
-    const platformStyles = {};
+    const platformStyles = {}
     Object.keys(styles).forEach((name) => {
-      let { ios, android, ...style } = { ...styles[name] };
+      let { ios, android, ...style } = { ...styles[name] }
       if (ios && Platform.OS === 'ios') {
-        style = { ...style, ...ios };
+        style = { ...style, ...ios }
       }
       if (android && Platform.OS === 'android') {
-        style = { ...style, ...android };
+        style = { ...style, ...android }
       }
-      platformStyles[name] = style;
-    });
-    return StyleSheet.create(platformStyles);
-  },
-};
+      platformStyles[name] = style
+    })
+    return StyleSheet.create(platformStyles)
+  }
+}
 
-export default PlatformStyle;
+export default PlatformStyle

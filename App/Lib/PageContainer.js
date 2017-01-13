@@ -1,25 +1,25 @@
-import React, {Component, PropTypes} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {Component, PropTypes} from 'react'
+import {View} from 'react-native'
 
-import PlatformStyle from '../Lib/PlatformStyle';
+import PlatformStyle from '../Lib/PlatformStyle'
 
 class PageContainer extends Component {
 
   static propTypes = {
-    isTab: PropTypes.bool,
+    isTab: PropTypes.bool
   };
 
-  render() {
-    const { style, isTab, ...otherProps } = this.props;
-    const styleList = [style, styles.container];
+  render () {
+    const { style, isTab, ...otherProps } = this.props
+    const styleList = [style, styles.container]
     if (isTab) {
-      styleList.push(styles.tab);
+      styleList.push(styles.tab)
     }
     return (
       <View style={styleList} {...otherProps}>
         {this.props.children}
       </View>
-    );
+    )
   }
 }
 
@@ -29,15 +29,15 @@ const styles = PlatformStyle.create({
     flex: 1,
     overflow: 'hidden',
     ios: {
-      paddingTop: 64,
+      paddingTop: 64
     },
     android: {
-      paddingTop: 54,
-    },
+      paddingTop: 54
+    }
   },
   tab: {
-    marginBottom: 50,
+    marginBottom: 50
   }
-});
+})
 
-export default PageContainer;
+export default PageContainer

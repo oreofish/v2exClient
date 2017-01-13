@@ -126,7 +126,7 @@ class UsageExamplesScreen extends React.Component {
 
   render () {
     return (
-      <PageContainer isTab={true}>
+      <PageContainer isTab>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.section}>

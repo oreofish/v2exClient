@@ -64,7 +64,7 @@ export default class APITestingScreen extends React.Component {
 
   render () {
     return (
-      <PageContainer isTab={true}>
+      <PageContainer isTab>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
 
