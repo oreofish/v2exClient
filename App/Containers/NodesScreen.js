@@ -36,11 +36,7 @@ class NodesScreen extends Component {
 
   async initializeNodes () {
     try {
-      const api = V2exApi.create()
-      this.nodes = await api.getNodes()
-      console.log('constructor:1', '-----------------------')
-      console.log('initializeNodes:', this.nodes)
-      console.log('constructor:2', '----------------------- ')
+      this.nodes = await V2exApi.getNodes()
     } catch (error) {
       console.log('error:', error)
     }
@@ -111,7 +107,8 @@ class NodesScreen extends Component {
     const { slug, name } = rowData
     return (
       <View style={styles.searchResultRow}>
-        <TouchableRow style={{flex: 1}} innerViewStyle={{justifyContent: 'center'}} onPress={() => this.onNodePress(slug, name)}>
+        <TouchableRow style={{flex: 1}} innerViewStyle={{justifyContent: 'center'}}
+          onPress={() => this.onNodePress(slug, name)}>
           <Text style={styles.searchResultRowText}>{name}（{slug}）</Text>
         </TouchableRow>
         <Separator marginLeft={0} />
@@ -131,7 +128,7 @@ class NodesScreen extends Component {
   };
 
   onNodePress (slug, name) {
-    Actions.node({ slug, title: name })
+    Actions.node({slug, title: name})
   }
 
 }
