@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {View, TextInput, LayoutAnimation} from 'react-native'
 import Button from 'react-native-button'
 
-import PlatformStyle from '../Lib/PlatformStyle'
+import PlatformStyle from '../../Lib/PlatformStyle'
 
 class ListViewSearchBar extends Component {
   static propTypes = {

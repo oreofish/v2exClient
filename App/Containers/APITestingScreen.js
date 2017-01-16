@@ -11,7 +11,7 @@ import FJSON from 'format-json'
 
 // Styles
 import styles from './Styles/APITestingScreenStyle'
-import PageContainer from '../Lib/PageContainer'
+import PageContainer from '../Components/common/PageContainer'
 
 // API buttons here:
 const endpoints = [

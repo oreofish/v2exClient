@@ -12,7 +12,7 @@ import PlatformStyle from '../Lib/PlatformStyle'
 
 // screens identified by the router
 import PresentationScreen from '../Containers/PresentationScreen'
-import AllComponentsScreen from '../Containers/NodesScreen'
+import NodesTab from '../Containers/NodesTab'
 import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import ListviewExample from '../Containers/ListviewExample'
@@ -41,8 +41,8 @@ class NavigationRouter extends Component {
               icon={TabIcon}
               initial
               title='Ignite' />
-            <Scene key='componentExamples'
-              component={AllComponentsScreen}
+            <Scene key='NodesTab'
+              component={NodesTab}
               title='组件'
               titleStyle={styles.titleStyle}
               navigationBarStyle={styles.navigationBarStyle}

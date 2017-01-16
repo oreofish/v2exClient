@@ -14,7 +14,7 @@ import * as Animatable from 'react-native-animatable'
 // Enable when you have configured Xcode
 // import PushNotification from 'react-native-push-notification'
 import I18n from 'react-native-i18n'
-import PageContainer from '../Lib/PageContainer'
+import PageContainer from '../Components/common/PageContainer'
 
 // Styles
 import styles from './Styles/UsageExamplesScreenStyle'

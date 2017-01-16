@@ -3,7 +3,7 @@
 // An All Components Screen is a great way to dev and quick-test components
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import PageContainer from '../Lib/PageContainer'
+import PageContainer from '../Components/common/PageContainer'
 
 import {Actions} from 'react-native-router-flux'
 
@@ -12,14 +12,14 @@ import PlatformStyle from '../Lib/PlatformStyle'
 import V2exApi from '../Services/V2exApi'
 
 import HomepageNodeData from '../Fixtures/homepage_node_data.json'
-import GiftedListView from '../Lib/GiftedListView'
-import Separator from '../Lib/Separator'
-import TouchableRow from '../Lib/TouchableRow'
+import GiftedListView from '../Components/common/GiftedListView'
+import Separator from '../Components/common/Separator'
+import TouchableRow from '../Components/common/TouchableRow'
 
 // Examples Render Engine
 // import ExamplesRegistry from '../Services/ExamplesRegistry'
 
-class NodesScreen extends Component {
+class NodesTab extends Component {
 
   searchMode = false;
 
@@ -188,4 +188,4 @@ const styles = PlatformStyle.create({
 
 })
 
-export default NodesScreen
+export default NodesTab

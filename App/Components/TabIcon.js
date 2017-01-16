@@ -17,7 +17,7 @@ class TabIcon extends Component {
         return <Icon name='globe' size={defaultIconSize - 0} color={iconColor} />
       case 'discovery-s':
         return <Icon name='globe' size={defaultIconSize - 0} color={selectedIconColor} />
-      case 'componentExamples':
+      case 'NodesTab':
         return <MaterialIcon name='dashboard' size={defaultIconSize + 2} color={iconColor} />
       case 'nodeList-s':
         return <MaterialIcon name='dashboard' size={defaultIconSize + 2} color={selectedIconColor} />

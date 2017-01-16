@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import {View} from 'react-native'
 
-import PlatformStyle from '../Lib/PlatformStyle'
+import PlatformStyle from '../../Lib/PlatformStyle'
 
 class PageContainer extends Component {
 

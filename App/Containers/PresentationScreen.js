@@ -4,7 +4,7 @@ import React from 'react'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
-import PageContainer from '../Lib/PageContainer'
+import PageContainer from '../Components/common/PageContainer'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // Styles
