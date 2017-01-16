@@ -20,7 +20,7 @@ import ListviewGridExample from '../Containers/ListviewGridExample'
 import ListviewSectionsExample from '../Containers/ListviewSectionsExample'
 import ListviewSearchingExample from '../Containers/ListviewSearchingExample'
 import MapviewExample from '../Containers/MapviewExample'
-import APITestingScreen from '../Containers/APITestingScreen'
+import MeTab from '../Containers/MeTab'
 import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 
@@ -53,8 +53,8 @@ class NavigationRouter extends Component {
               titleStyle={styles.titleStyle}
               navigationBarStyle={styles.navigationBarStyle}
               icon={TabIcon} />
-            <Scene key='apiTesting'
-              component={APITestingScreen}
+            <Scene key='MeTab'
+              component={MeTab}
               title='我'
               titleStyle={styles.titleStyle}
               navigationBarStyle={styles.navigationBarStyle}

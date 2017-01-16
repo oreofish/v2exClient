@@ -1,4 +1,8 @@
+import cheerio from 'cheerio'
 import axios from 'axios'
+import StringUtils from '../Lib/StringUtils'
+
+let once = null
 
 class V2exApi {
   static getNodes () {
@@ -13,6 +17,21 @@ class V2exApi {
     return instance.get('/api/nodes/all.json')
   }
 
+  static getPage (uri) {
+    const instance = v2exAxios()
+    instance.interceptors.response.use((data) => {
+      const jq = cheerio.load(data.data, { decodeEntities: false })
+      parseOnce(jq)
+      console.log('V2exApi', once)
+      return jq
+    })
+
+    return instance.get(uri)
+  }
+
+  static getOnce () {
+    return once
+  }
 }
 // creates the axios instance
 function v2exAxios () {
@@ -29,6 +48,16 @@ function v2exAxios () {
 
   console.log('V2exApi', '================ ')
   return instance
+}
+
+function parseOnce ($) {
+  const logOutElement = $('a:contains("登出")')
+  const onClick = logOutElement.attr('onclick')
+  const tempOnce = StringUtils.matchFirst(onClick, /signout\?once=(\d+)/)
+  if (tempOnce) {
+    once = tempOnce
+  }
+  return tempOnce
 }
 
 export default V2exApi

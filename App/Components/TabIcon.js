@@ -25,7 +25,7 @@ class TabIcon extends Component {
         return <Icon name='bell' size={defaultIconSize - 2} color={iconColor} style={styles.searchIcon} />
       case 'notification-s':
         return <Icon name='bell' size={defaultIconSize - 2} color={selectedIconColor} style={styles.searchIcon} />
-      case 'apiTesting':
+      case 'MeTab':
         return <Icon name='user' size={defaultIconSize - 0} color={iconColor} />
       case 'me-s':
       default:

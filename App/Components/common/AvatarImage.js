@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {Image} from 'react-native'
 // import ImageSourcePropType from 'ImageSourcePropType'
 
-import { Images } from '../Themes'
+import { Images } from '../../Themes'
 
 class AvatarImage extends Component {
   static propTypes = {

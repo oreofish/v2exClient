@@ -40,13 +40,18 @@
     "react-native-vector-icons": "^4.0.0",
     "react-native-gifted-listview": "0.0.15",
     "react-native-button": "1.7.1",
+    "react-native-cookies": "2.0.0",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-persist": "^4.0.1",
     "redux-saga": "^0.14.2",
     "reduxsauce": "0.4.1",
-    "seamless-immutable": "^7.0.1"
+    "seamless-immutable": "^7.0.1",
+    "cheerio": "^0.22.0",
+    "events": "^1.1.1",
+    "stream": "^0.0.2",
+    "buffer": "^4.7.0"
   },
   "devDependencies": {
     "ava": "^0.17.0",
