@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 import {View, Text, TouchableOpacity, Image} from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import PlatformStyle from '../Lib/PlatformStyle'
-
 import Separator from './common/Separator'
 
 class ActionRow extends Component {
