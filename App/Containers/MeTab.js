@@ -106,7 +106,7 @@ class MeTab extends Component {
     } else {
       const { name } = user
       try {
-        const $ = await V2exApi.get(`/member/${name}`)
+        const $ = await V2exApi.getPage(`/member/${name}`)
         const avatarURI = $('img.avatar').attr('src')
         user.avatarURI = avatarURI
         console.log('user:', user)
