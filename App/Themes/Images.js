@@ -9,7 +9,8 @@ const images = {
   background: require('../Images/BG.png'),
   setting_icon: require('../Images/setting_icon.png'),
   signout_icon: require('../Images/signout_icon.png'),
-  avatarPlaceholder: require('../Images/avatar_placeholder.png')
+  avatarPlaceholder: require('../Images/avatar_placeholder.png'),
+  new_topic_icon: require('../Images/new_topic_icon.png')
 }
 
 export default images

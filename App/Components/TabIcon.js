@@ -13,21 +13,21 @@ class TabIcon extends Component {
     const {sceneKey, selected} = this.props
     const flag = sceneKey + (selected ? '-s' : '')
     switch (flag) {
-      case 'presentationScreen':
+      case 'DiscoveryTab':
         return <Icon name='globe' size={defaultIconSize - 0} color={iconColor} />
-      case 'discovery-s':
+      case 'DiscoveryTab-s':
         return <Icon name='globe' size={defaultIconSize - 0} color={selectedIconColor} />
       case 'NodesTab':
         return <MaterialIcon name='dashboard' size={defaultIconSize + 2} color={iconColor} />
-      case 'nodeList-s':
+      case 'NodesTab-s':
         return <MaterialIcon name='dashboard' size={defaultIconSize + 2} color={selectedIconColor} />
       case 'usageExamples':
         return <Icon name='bell' size={defaultIconSize - 2} color={iconColor} style={styles.searchIcon} />
-      case 'notification-s':
+      case 'usageExamples-s':
         return <Icon name='bell' size={defaultIconSize - 2} color={selectedIconColor} style={styles.searchIcon} />
       case 'MeTab':
         return <Icon name='user' size={defaultIconSize - 0} color={iconColor} />
-      case 'me-s':
+      case 'MeTab-s':
       default:
         return <Icon name='user' size={defaultIconSize - 0} color={selectedIconColor} />
     }

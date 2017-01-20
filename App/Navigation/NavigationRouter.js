@@ -11,7 +11,7 @@ import TabIcon from '../Components/TabIcon'
 import PlatformStyle from '../Lib/PlatformStyle'
 
 // screens identified by the router
-import PresentationScreen from '../Containers/PresentationScreen'
+import DiscoveryTab from '../Containers/DiscoveryTab'
 import NodesTab from '../Containers/NodesTab'
 import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
 import LoginScreen from '../Containers/Login'
@@ -34,8 +34,8 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='root' titleStyle={styles.titleStyle} navigationBarStyle={styles.navigationBarStyle}>
           <Scene key='tabbar' tabs tabBarStyle={styles.tabBar} hideNavBar navigationBarStyle={styles.navigationBarStyle}>
-            <Scene key='presentationScreen'
-              component={PresentationScreen}
+            <Scene key='DiscoveryTab'
+              component={DiscoveryTab}
               titleStyle={styles.titleStyle}
               navigationBarStyle={styles.navigationBarStyle}
               icon={TabIcon}
