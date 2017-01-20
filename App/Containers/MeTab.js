@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import SessionManager from '../Lib/SessionManager'
 import PlatformStyle from '../Lib/PlatformStyle'
+import ImageUtils from '../Lib/ImageUtils'
 import V2exApi from '../Services/V2exApi'
 
 import PageContainer from '../Components/common/PageContainer'
@@ -108,7 +109,7 @@ class MeTab extends Component {
       try {
         const $ = await V2exApi.getPage(`/member/${name}`)
         const avatarURI = $('img.avatar').attr('src')
-        user.avatarURI = avatarURI
+        user.avatarURI = ImageUtils.handleAvatarImageURI(avatarURI)
         console.log('user:', user)
         this.setState({ user })
       } catch (error) {

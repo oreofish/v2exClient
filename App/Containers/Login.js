@@ -176,7 +176,7 @@ class LoginPage extends Component {
 
   async getPostToken () {
     try {
-      let $ = await V2exApi.getPage('/signin')
+      let $ = await V2exApi.getSigninForm()
       const usernameFieldName = $('input[placeholder="用户名或电子邮箱地址"]').attr('name')
       const passwordFieldName = $('input[type="password"]').attr('name')
       const once = $('input[name="once"]').attr('value')
