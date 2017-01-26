@@ -15,6 +15,14 @@ import DiscoveryTab from '../Containers/DiscoveryTab'
 import NodesTab from '../Containers/NodesTab'
 import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
 import LoginScreen from '../Containers/Login'
+
+import TopicPageContainer from '../Containers/TopicPage'
+import UserPageContainer from '../Containers/UserPage'
+import UserTopicPageContainer from '../Containers/UserTopicPage'
+import UserReply from '../Containers/UserReply'
+import NodePage from '../Containers/Node'
+import NewTopicPage from '../Containers/NewTopic'
+
 import ListviewExample from '../Containers/ListviewExample'
 import ListviewGridExample from '../Containers/ListviewGridExample'
 import ListviewSectionsExample from '../Containers/ListviewSectionsExample'
@@ -61,7 +69,14 @@ class NavigationRouter extends Component {
               icon={TabIcon} />
           </Scene>
 
-          <Scene key='login' component={LoginScreen} title='Login' hideNavBar />
+          <Scene key='topic' component={TopicPageContainer} title='阅读话题' />
+          <Scene key='user' component={UserPageContainer} title='用户' />
+          <Scene key='user_topic' component={UserTopicPageContainer} title='用户话题' />
+          <Scene key='userReply' component={UserReply} title='用户回复' />
+          <Scene key='node' component={NodePage} title='节点' />
+          <Scene key='newTopic' component={NewTopicPage} title='创建话题' />
+
+          <Scene key='login' component={LoginScreen} direction='vertical' title='Login' hideNavBar />
           <Scene key='listviewExample' component={ListviewExample} title='Listview Example' rightTitle='Example' onRight={() => window.alert('Example Pressed')} />
           <Scene key='listviewGridExample' component={ListviewGridExample} title='Listview Grid' />
           <Scene key='listviewSectionsExample' component={ListviewSectionsExample} title='Listview Sections' />
