@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -22,6 +21,7 @@ import okhttp3.OkHttpClient;
 import com.facebook.react.modules.network.OkHttpClientProvider;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import java.util.concurrent.TimeUnit;
+import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +39,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new VectorIconsPackage(),
-            new MapsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
             new ReactNativeConfigPackage(),
@@ -65,5 +64,6 @@ public class MainApplication extends Application implements ReactApplication {
       .addNetworkInterceptor(new StethoInterceptor())
       .build();
     OkHttpClientProvider.replaceOkHttpClient(client);
+    SoLoader.init(this, /* native exopackage */ false);
   }
 }
