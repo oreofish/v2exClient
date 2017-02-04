@@ -3,6 +3,7 @@
 import React from 'react'
 import { TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/FullButtonStyle'
+/*
 import ExamplesRegistry from '../Services/ExamplesRegistry'
 
 // Example
@@ -12,6 +13,7 @@ ExamplesRegistry.add('Full Button', () =>
     onPress={() => window.alert('Full Button Pressed!')}
   />
 )
+*/
 
 type FullButtonProps = {
   text: string,

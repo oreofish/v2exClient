@@ -1,5 +1,5 @@
 import test from 'ava'
-import Actions, { reducer, INITIAL_STATE } from '../../App/Redux/LoginRedux'
+import Actions, { isLoggedIn, reducer, INITIAL_STATE } from '../../App/Redux/LoginRedux'
 
 test('attempt', (t) => {
   const state = reducer(INITIAL_STATE, Actions.loginRequest('u', 'p'))
@@ -11,6 +11,7 @@ test('success', (t) => {
   const state = reducer(INITIAL_STATE, Actions.loginSuccess('hi'))
 
   t.is(state.username, 'hi')
+  t.true(isLoggedIn(state))
 })
 
 test('failure', (t) => {
@@ -18,6 +19,7 @@ test('failure', (t) => {
 
   t.false(state.fetching)
   t.is(state.error, 69)
+  t.false(isLoggedIn(state))
 })
 
 test('logout', (t) => {

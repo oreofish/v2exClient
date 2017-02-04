@@ -174,19 +174,10 @@ class LoginPage extends Component {
     }
   }
 
-  async getPostToken () {
-    try {
-      let $ = await V2exApi.getSigninForm()
-      const usernameFieldName = $('input[placeholder="用户名或电子邮箱地址"]').attr('name')
-      const passwordFieldName = $('input[type="password"]').attr('name')
-      const once = $('input[name="once"]').attr('value')
-      const postToken = { usernameFieldName, passwordFieldName, once }
-      this.postToken = postToken
-      console.log('getPostToken', '--------------------', this.postToken)
-      return postToken
-    } catch (error) {
-      console.log('error when getting post token:', error)
-    }
+  getPostToken () {
+    this.postToken = V2exApi.getSigninForm()
+    console.log('getPostToken', '--------------------', this.postToken)
+    return this.postToken
   }
 
   async performLogin () {

@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import styles from './Styles/DrawerButtonStyles'
+/*
 import ExamplesRegistry from '../Services/ExamplesRegistry'
 
 // Example
@@ -12,6 +13,7 @@ ExamplesRegistry.add('Drawer Button', () =>
     onPress={() => window.alert('Your drawers are showing')}
   />
 )
+*/
 
 type DrawerButtonProps = {
   text: string,

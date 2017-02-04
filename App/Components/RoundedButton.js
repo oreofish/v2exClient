@@ -3,6 +3,7 @@
 import React from 'react'
 import { TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/RoundedButtonStyle'
+/*
 import ExamplesRegistry from '../Services/ExamplesRegistry'
 
 // Example
@@ -12,6 +13,7 @@ ExamplesRegistry.add('Rounded Button', () =>
     onPress={() => window.alert('Rounded Button Pressed!')}
   />
 )
+*/
 
 type RoundedButtonProps = {
   onPress: () => void,

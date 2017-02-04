@@ -36,8 +36,16 @@ class V2exApi {
     return Networking.post('/signin', data, { 'Referer': 'https://www.v2ex.com/signin' })
   }
 
-  static getSigninForm () {
-    return Networking.request('GET', '/signin')
+  static async getSigninForm () {
+    try {
+      let $ = await Networking.request('GET', '/signin')
+      const usernameFieldName = $('input[placeholder="用户名或电子邮箱地址"]').attr('name')
+      const passwordFieldName = $('input[type="password"]').attr('name')
+      const once = $('input[name="once"]').attr('value')
+      return {usernameFieldName, passwordFieldName, once}
+    } catch (error) {
+      console.log('error when getting post token:', error)
+    }
   }
 
   static getPage (uri) {

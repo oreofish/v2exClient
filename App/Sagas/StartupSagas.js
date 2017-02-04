@@ -6,8 +6,8 @@ import { is } from 'ramda'
 export const selectTemperature = (state) => state.temperature.temperature
 
 // process STARTUP actions
-export function * startup (action) {
-  if (__DEV__ && console.tron) {
+export function * startup () {
+/*  if (__DEV__ && console.tron) {
     // straight-up string logging
     console.tron.log('Hello, I\'m an example of how to log via Reactotron.')
 
@@ -31,7 +31,7 @@ export function * startup (action) {
         someNormalFunction: selectTemperature
       }
     })
-  }
+  } */
   const temp = yield select(selectTemperature)
   // only fetch new temps when we don't have one yet
   if (!is(Number, temp)) {
