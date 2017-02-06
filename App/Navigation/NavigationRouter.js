@@ -14,7 +14,7 @@ import PlatformStyle from '../Lib/PlatformStyle'
 import DiscoveryTab from '../Containers/DiscoveryTab'
 import NodesTab from '../Containers/NodesTab'
 import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
-import LoginScreen from '../Containers/Login'
+import LoginScreen from '../Containers/LoginPage'
 
 import TopicPageContainer from '../Containers/TopicPage'
 import UserPageContainer from '../Containers/UserPage'

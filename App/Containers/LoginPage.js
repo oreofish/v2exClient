@@ -2,11 +2,12 @@
 
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {View, Text, TouchableOpacity, StatusBar, TextInput, Image, Keyboard, LayoutAnimation} from 'react-native'
+import {View, Text, TouchableOpacity, StatusBar, TextInput, Image} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {Images, Metrics} from '../Themes'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import {Images} from '../Themes'
 
 import SessionManager from '../Lib/SessionManager'
 import PlatformStyle from '../Lib/PlatformStyle'
@@ -15,32 +16,23 @@ import V2exApi from '../Services/V2exApi'
 import LoginActions from '../Redux/LoginRedux'
 // import I18n from 'react-native-i18n'
 
-const CLOSE_BUTTON_SIZE = 27
-
 type LoginPageProps = {
   dispatch: () => any,
   fetching: boolean,
   attemptLogin: () => void
 }
 
+type LoginPageStates = {
+  username: string,
+  password: string,
+  isLoading: boolean,
+  errorMessage: string,
+}
+
 class LoginPage extends Component {
 
   props: LoginPageProps
-
-  state: {
-    username: string,
-    password: string,
-    visibleHeight: number,
-    // isInfoWrong: boolean,
-    isLoading: boolean,
-    errorMessage: string,
-    topLogo: {
-      width: number
-    }
-  }
-
-  keyboardDidShowListener: Object
-  keyboardDidHideListener: Object
+  state: LoginPageStates
 
   constructor (props) {
     super(props)
@@ -48,11 +40,8 @@ class LoginPage extends Component {
     this.state = {
       username: null,
       password: null,
-      visibleHeight: Metrics.screenHeight,
-      // isInfoWrong: false,
       isLoading: false,
-      errorMessage: null,
-      topLogo: { width: Metrics.screenWidth }
+      errorMessage: null
     }
   }
 
@@ -65,34 +54,11 @@ class LoginPage extends Component {
   }
 
   componentWillMount () {
-    // Using keyboardWillShow/Hide looks 1,000 times better, but doesn't work on Android
-    // TODO: Revisit this if Android begins to support - https://github.com/facebook/react-native/issues/3468
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow)
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide)
+
   }
 
   componentWillUnmount () {
-    this.keyboardDidShowListener.remove()
-    this.keyboardDidHideListener.remove()
-  }
 
-  keyboardDidShow = (e) => {
-    // Animation types easeInEaseOut/linear/spring
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-    let newSize = Metrics.screenHeight - e.endCoordinates.height
-    this.setState({
-      visibleHeight: newSize,
-      topLogo: {width: 100, height: 50}
-    })
-  }
-
-  keyboardDidHide = (e) => {
-    // Animation types easeInEaseOut/linear/spring
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-    this.setState({
-      visibleHeight: Metrics.screenHeight,
-      topLogo: {width: Metrics.screenWidth}
-    })
   }
 
   componentDidMount () {
@@ -107,11 +73,11 @@ class LoginPage extends Component {
         <StatusBar barStyle='default' />
         <View style={styles.firstRow}>
           <TouchableOpacity onPress={Actions.pop} style={styles.closeButtonWrapper}>
-            <Icon name='times' size={CLOSE_BUTTON_SIZE} color='#CCCCDE' style={styles.closeButton} />
+            <Icon name='times' size={27} color='#CCCCDE' style={styles.closeButton} />
           </TouchableOpacity>
-          <Text style={styles.titleText}>Wetoo</Text>
+          <Text style={styles.titleText}>登录</Text>
         </View>
-        <Image source={Images.logo} style={[styles.topLogo, this.state.topLogo]} />
+        <Image source={Images.logo} style={styles.topLogo} />
 
         <View style={styles.loginFormWrapper}>
           <View style={styles.formInputWrapper}>
@@ -151,6 +117,9 @@ class LoginPage extends Component {
           containerStyle={[styles.loginButtonContainer, isLoading ? styles.loginButtonContainerDisabled : {}]}>
           {isLoading ? '登录中...' : '登录'}
         </Button>
+
+        {/* The view that will animate to match the keyboards height */}
+        <KeyboardSpacer />
       </View>
     )
   }
@@ -165,25 +134,19 @@ class LoginPage extends Component {
       this.refs['passwordField'].blur()
 
       this.setState({ isLoading: true, errorMessage: null })
-
-      if (!this.postToken) {
-        this.getPostToken().then(() => this.performLogin())
-      } else {
-        this.performLogin()
-      }
+      this.getPostToken().then((postToken) => this.performLogin(username, password, postToken))
     }
   }
 
   getPostToken () {
-    this.postToken = V2exApi.getSigninForm()
-    console.log('getPostToken', '--------------------', this.postToken)
-    return this.postToken
+    const postToken = V2exApi.getSigninForm()
+    console.log('getPostToken', '--------------------', postToken)
+    return postToken
   }
 
-  async performLogin () {
+  async performLogin (username, password, postToken) {
     try {
-      const { username, password } = this.state
-      const { usernameFieldName, passwordFieldName, once } = this.postToken
+      const { usernameFieldName, passwordFieldName, once } = postToken
       const data = { once, next: '/' }
       data[usernameFieldName] = username
       data[passwordFieldName] = password
@@ -209,7 +172,6 @@ class LoginPage extends Component {
 
   cancelLogin = (errorMessage = null) => {
     console.log('cancelLogin', errorMessage)
-    this.postToken = null
     this.setState({ isLoading: false, errorMessage })
   }
 
@@ -242,8 +204,8 @@ const styles = PlatformStyle.create({
   },
   closeButtonWrapper: {},
   closeButton: {
-    width: CLOSE_BUTTON_SIZE,
-    height: CLOSE_BUTTON_SIZE
+    width: 50,
+    height: 50
   },
 
   loginFormWrapper: {
@@ -290,7 +252,9 @@ const styles = PlatformStyle.create({
   topLogo: {
     alignSelf: 'center',
     resizeMode: 'contain',
-    height: 50
+    flex: 1,
+    maxHeight: 120,
+    minHeight: 20
   }
 })
 
