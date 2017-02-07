@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import {View, Text, ScrollView, TouchableWithoutFeedback} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -7,6 +8,7 @@ import SessionManager from '../Lib/SessionManager'
 import PlatformStyle from '../Lib/PlatformStyle'
 import ImageUtils from '../Lib/ImageUtils'
 import V2exApi from '../Services/V2exApi'
+import LoginActions from '../Redux/LoginRedux'
 
 import PageContainer from '../Components/common/PageContainer'
 import ActionRow from './../Components/ActionRow'
@@ -14,18 +16,17 @@ import AvatarImage from '../Components/common/AvatarImage'
 
 import {Images} from '../Themes'
 
+type MeTabProps = {
+  username: string,
+  password: string,
+  isLoading: boolean,
+  errorMessage: string,
+  logOut: () => void
+}
+
 class MeTab extends Component {
   state = { user: null };
-
-  constructor (props) {
-    super(props)
-
-    this.onLoginPress = this.onLoginPress.bind(this)
-    this.onLogOutPress = this.onLogOutPress.bind(this)
-    this.onSettingPress = this.onSettingPress.bind(this)
-    this.renderLoggedIn = this.renderLoggedIn.bind(this)
-    this.renderNotLoggedIn = this.renderNotLoggedIn.bind(this)
-  }
+  props: MeTabProps
 
   componentDidMount () {
     SessionManager.listenToStatusChanged((user) => {
@@ -46,7 +47,7 @@ class MeTab extends Component {
     )
   }
 
-  renderNotLoggedIn () {
+  renderNotLoggedIn = () => {
     return (
       <View>
         <TouchableWithoutFeedback onPress={this.onLoginPress}>
@@ -67,7 +68,7 @@ class MeTab extends Component {
 
   //           <ActionRow title="设置" onPress={this.onSettingPress} iconImage={SettingIcon} />
 
-  renderLoggedIn () {
+  renderLoggedIn = () => {
     const { name, avatarURI } = this.state.user
     console.log('avatarURI:', avatarURI, name, this)
     return (
@@ -85,23 +86,20 @@ class MeTab extends Component {
     )
   }
 
-  onLoginPress () {
+  onLoginPress = () => {
     Actions.login()
   }
 
-  onSettingPress () {
+  onSettingPress = () => {
     console.log('press')
   }
 
-  onLogOutPress () {
-    SessionManager.logOut().then(res => {
-      console.log('log out succeed:', res)
-    }, err => {
-      console.log('log out err:', err)
-    })
+  onLogOutPress = () => {
+    this.props.logOut()
   }
 
   async loadCurrentUser (user) {
+    console.log('MeTab', '------------', 'loadCurrentUser', user)
     if (!user) {
       this.setState({ user })
     } else {
@@ -110,7 +108,7 @@ class MeTab extends Component {
         const $ = await V2exApi.getPage(`/member/${name}`)
         const avatarURI = $('img.avatar').attr('src')
         user.avatarURI = ImageUtils.handleAvatarImageURI(avatarURI)
-        console.log('user:', user)
+        // console.log('user:', user)
         this.setState({ user })
       } catch (error) {
         console.log('error:', error)
@@ -166,4 +164,16 @@ const styles = PlatformStyle.create({
   }
 })
 
-export default MeTab
+const mapStateToProps = (state) => {
+  return state.login
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => {
+      dispatch(LoginActions.logout())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MeTab)

@@ -9,46 +9,30 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import {Images} from '../Themes'
 
-import SessionManager from '../Lib/SessionManager'
 import PlatformStyle from '../Lib/PlatformStyle'
-import V2exApi from '../Services/V2exApi'
-
 import LoginActions from '../Redux/LoginRedux'
 // import I18n from 'react-native-i18n'
 
 type LoginPageProps = {
-  dispatch: () => any,
-  fetching: boolean,
-  attemptLogin: () => void
-}
-
-type LoginPageStates = {
   username: string,
   password: string,
   isLoading: boolean,
   errorMessage: string,
+  attemptLogin: () => void
 }
 
 class LoginPage extends Component {
 
   props: LoginPageProps
-  state: LoginPageStates
 
-  constructor (props) {
+/*  constructor (props) {
     super(props)
-
-    this.state = {
-      username: null,
-      password: null,
-      isLoading: false,
-      errorMessage: null
-    }
-  }
+  } */
 
   componentWillReceiveProps (newProps) {
-    this.forceUpdate()
+    // this.forceUpdate()
     // Did the login attempt complete?
-    if (this.isLoading && !newProps.fetching) {
+    if (this.isLoading) {
       Actions.pop()
     }
   }
@@ -133,53 +117,9 @@ class LoginPage extends Component {
       this.refs['usernameField'].blur()
       this.refs['passwordField'].blur()
 
-      this.setState({ isLoading: true, errorMessage: null })
-      this.getPostToken().then((postToken) => this.performLogin(username, password, postToken))
+      this.props.attemptLogin(username, password)
     }
   }
-
-  getPostToken () {
-    const postToken = V2exApi.getSigninForm()
-    console.log('getPostToken', '--------------------', postToken)
-    return postToken
-  }
-
-  async performLogin (username, password, postToken) {
-    try {
-      const { usernameFieldName, passwordFieldName, once } = postToken
-      const data = { once, next: '/' }
-      data[usernameFieldName] = username
-      data[passwordFieldName] = password
-      console.log('performLogin data:', data)
-
-      let $ = await V2exApi.postSignin(data)
-      const problemMessage = $('.problem').text()
-      if (problemMessage && problemMessage.length > 0) {
-        this.cancelLogin(problemMessage.replace('请解决以下问题然后再提交：', ''))
-      } else {
-        SessionManager.setCurrentUser($)
-        const user = SessionManager.getCurrentUser()
-        if (user) {
-          this.loginSucceed()
-        } else {
-          this.cancelLogin('未知错误，请重试或联系开发者')
-        }
-      }
-    } catch (error) {
-      this.cancelLogin('网络错误，请重试')
-    }
-  }
-
-  cancelLogin = (errorMessage = null) => {
-    console.log('cancelLogin', errorMessage)
-    this.setState({ isLoading: false, errorMessage })
-  }
-
-  loginSucceed = () => {
-    console.log('loginSucceed', '--------------------')
-    Actions.pop()
-  }
-
 }
 
 const styles = PlatformStyle.create({
@@ -259,9 +199,13 @@ const styles = PlatformStyle.create({
 })
 
 const mapStateToProps = (state) => {
-  return {
-    fetching: state.login.fetching
+  console.log('LoginPage', 'mapStateToProps', state.login.isLoading, state.login.errorMessage)
+  if (!state.login.isLoading && state.login.errorMessage.empty) {
+    // close login page when login success
+    // is here the right place to close page?
+    Actions.pop()
   }
+  return state.login
 }
 
 const mapDispatchToProps = (dispatch) => {

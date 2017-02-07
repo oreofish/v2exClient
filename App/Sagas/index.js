@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga'
+import { fork, takeLatest } from 'redux-saga/effects'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugSettings from '../Config/DebugSettings'
@@ -7,12 +7,11 @@ import DebugSettings from '../Config/DebugSettings'
 
 import { StartupTypes } from '../Redux/StartupRedux'
 import { TemperatureTypes } from '../Redux/TemperatureRedux'
-import { LoginTypes } from '../Redux/LoginRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
-import { login } from './LoginSagas'
+import { loginFlow } from './LoginSagas'
 import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -27,8 +26,7 @@ export default function * root () {
   yield [
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-    takeLatest(LoginTypes.LOGIN_REQUEST, login),
-
+    fork(loginFlow),
     // some sagas receive extra parameters in addition to an action
     takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
   ]
