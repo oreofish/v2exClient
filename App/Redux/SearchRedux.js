@@ -5,6 +5,7 @@ import Immutable from 'seamless-immutable'
 import { filter } from 'ramda'
 import { startsWith } from 'ramdasauce'
 
+/*
 const LIST_DATA = ['sausage', 'blubber', 'pencil', 'cloud', 'moon', 'water', 'computer', 'school',
   'network', 'hammer', 'walking', 'violently', 'mediocre', 'literature', 'chair', 'two', 'window',
   'cords', 'musical', 'zebra', 'xylophone', 'penguin', 'home', 'dog', 'final', 'ink', 'teacher', 'fun',
@@ -16,6 +17,10 @@ const LIST_DATA = ['sausage', 'blubber', 'pencil', 'cloud', 'moon', 'water', 'co
   'comment', 'element', 'magic', 'lion', 'sand', 'crust', 'toast', 'jam', 'hunter', 'forest', 'foraging',
   'silently', 'tawesomated', 'joshing', 'pong', 'RANDOM', 'WORD'
 ]
+*/
+
+// FIXME: restore to long one
+const LIST_DATA = ['water', 'computer', 'school']
 
 /* ------------- Types and Action Creators ------------- */
 

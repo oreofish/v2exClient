@@ -12,5 +12,14 @@ export default () => {
     search: require('./SearchRedux').reducer
   })
 
-  return configureStore(rootReducer, rootSaga)
+  const store = configureStore(rootReducer, rootSaga)
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept(() => {
+      store.replaceReducer(rootReducer)
+    })
+  }
+
+  return store
 }

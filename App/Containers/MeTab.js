@@ -4,10 +4,7 @@ import {View, Text, ScrollView, TouchableWithoutFeedback} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import SessionManager from '../Lib/SessionManager'
 import PlatformStyle from '../Lib/PlatformStyle'
-import ImageUtils from '../Lib/ImageUtils'
-import V2exApi from '../Services/V2exApi'
 import LoginActions from '../Redux/LoginRedux'
 
 import PageContainer from '../Components/common/PageContainer'
@@ -17,6 +14,7 @@ import AvatarImage from '../Components/common/AvatarImage'
 import {Images} from '../Themes'
 
 type MeTabProps = {
+  user: Object,
   username: string,
   password: string,
   isLoading: boolean,
@@ -25,23 +23,25 @@ type MeTabProps = {
 }
 
 class MeTab extends Component {
-  state = { user: null };
+
   props: MeTabProps
 
   componentDidMount () {
+/*
     SessionManager.listenToStatusChanged((user) => {
       console.log('listenToStatusChanged:', user)
       this.loadCurrentUser(user)
     })
+*/
 
-    this.loadCurrentUser(SessionManager.getCurrentUser())
+    // this.loadCurrentUser(SessionManager.getCurrentUser())
   }
 
   render () {
     return (
       <PageContainer isTab>
         <ScrollView style={styles.wrapper}>
-          {!this.state.user ? this.renderNotLoggedIn() : this.renderLoggedIn()}
+          {!this.props.user ? this.renderNotLoggedIn() : this.renderLoggedIn()}
         </ScrollView>
       </PageContainer>
     )
@@ -69,7 +69,7 @@ class MeTab extends Component {
   //           <ActionRow title="设置" onPress={this.onSettingPress} iconImage={SettingIcon} />
 
   renderLoggedIn = () => {
-    const { name, avatarURI } = this.state.user
+    const { name, avatarURI } = this.props.user
     console.log('avatarURI:', avatarURI, name, this)
     return (
       <View>
@@ -97,25 +97,6 @@ class MeTab extends Component {
   onLogOutPress = () => {
     this.props.logOut()
   }
-
-  async loadCurrentUser (user) {
-    console.log('MeTab', '------------', 'loadCurrentUser', user)
-    if (!user) {
-      this.setState({ user })
-    } else {
-      const { name } = user
-      try {
-        const $ = await V2exApi.getPage(`/member/${name}`)
-        const avatarURI = $('img.avatar').attr('src')
-        user.avatarURI = ImageUtils.handleAvatarImageURI(avatarURI)
-        // console.log('user:', user)
-        this.setState({ user })
-      } catch (error) {
-        console.log('error:', error)
-      }
-    }
-  }
-
 }
 
 const styles = PlatformStyle.create({

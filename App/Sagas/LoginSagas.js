@@ -2,6 +2,7 @@ import { take, fork, put } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
 import SessionManager from '../Lib/SessionManager'
 import V2exApi from '../Services/V2exApi'
+import ImageUtils from '../Lib/ImageUtils'
 
 function getPostToken () {
   const postToken = V2exApi.getSigninForm()
@@ -38,9 +39,30 @@ function* performLogin (username, password, postToken) {
 // attempts to login
 export function * loginFlow () {
   while (true) {
-    const {username, password} = yield take('LOGIN_REQUEST') // waiting for login request
-    const postToken = yield getPostToken() // get form token first
-    yield fork(performLogin, username, password, postToken) // real login
+    // read local cached user
+    const user = SessionManager.getCurrentUser()
+    console.log('loginFlow', '====================================', user)
+
+    if (user) {
+      // fetch user info
+      console.log('SessionManager.getCurrentUser():', user)
+      const { name } = user
+      try {
+        const $ = yield V2exApi.getPage(`/member/${name}`)
+        const avatarURI = $('img.avatar').attr('src')
+        user.avatarURI = ImageUtils.handleAvatarImageURI(avatarURI)
+        console.log('user:', user)
+        yield put(LoginActions.loadUser(user))
+      } catch (error) {
+        console.log('error:', error)
+      }
+    } else {
+      // load nothing, waiting for login request
+      const {username, password} = yield take('LOGIN_REQUEST')
+      const postToken = yield getPostToken() // get form token first
+      yield fork(performLogin, username, password, postToken) // real login
+    }
+
     const action = yield take(['LOGOUT', 'LOGIN_FAILURE']) // waiting for logout or failure
     if (action.type === 'LOGOUT') {
       SessionManager.logOut().then(res => {

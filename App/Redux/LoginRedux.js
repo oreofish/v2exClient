@@ -6,6 +6,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  loadUser: ['user'],
   loginRequest: ['username', 'password'],
   loginSuccess: ['username'],
   loginFailure: ['errorMessage'],
@@ -18,6 +19,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
+  user: null,
   username: null,
   password: null,
   isLoading: false,
@@ -25,6 +27,9 @@ export const INITIAL_STATE = Immutable({
 })
 
 /* ------------- Reducers ------------- */
+
+// load local cached user info
+export const load = (state: Object, { user }: Object) => state.merge({ user: user })
 
 // we're attempting to login
 export const request = (state: Object) => state.merge({ isLoading: true, errorMessage: null })
@@ -47,6 +52,7 @@ export const logout = (state: Object) => INITIAL_STATE
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.LOAD_USER]: load,
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,

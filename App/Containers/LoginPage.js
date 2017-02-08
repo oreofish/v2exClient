@@ -46,11 +46,10 @@ class LoginPage extends Component {
   }
 
   componentDidMount () {
-    this.getPostToken()
   }
 
   render () {
-    const { isLoading, errorMessage } = this.state
+    const { isLoading, errorMessage } = this.props
 
     return (
       <View style={styles.container}>
@@ -72,7 +71,7 @@ class LoginPage extends Component {
               autoCapitalize='none'
               autoCorrect={false}
               returnKeyType='next'
-              onChangeText={(username) => this.setState({ username })}
+              onChangeText={(username) => this.props({username})}
               onSubmitEditing={() => this.refs['passwordField'].focus()}
               underlineColorAndroid='#FFFFFF' />
           </View>
@@ -85,7 +84,7 @@ class LoginPage extends Component {
               autoCapitalize='none'
               autoCorrect={false}
               secureTextEntry
-              onChangeText={(password) => this.setState({ password })}
+              onChangeText={(password) => this.props({password})}
               onSubmitEditing={this.onSubmitButtonPress}
               underlineColorAndroid='#FFFFFF' />
           </View>
@@ -109,7 +108,8 @@ class LoginPage extends Component {
   }
 
   onSubmitButtonPress = () => {
-    const { isLoading, username, password } = this.state
+    const { isLoading, username, password } = this.props
+    console.log(this.props)
     if (!username || !password || username.length === 0 || password.length === 0) {
       return
     }
@@ -199,8 +199,8 @@ const styles = PlatformStyle.create({
 })
 
 const mapStateToProps = (state) => {
-  console.log('LoginPage', 'mapStateToProps', state.login.isLoading, state.login.errorMessage)
-  if (!state.login.isLoading && state.login.errorMessage.empty) {
+  console.log('LoginPage', 'mapStateToProps', state.login)
+  if (!state.login.isLoading && state.login.errorMessage != null) {
     // close login page when login success
     // is here the right place to close page?
     Actions.pop()
