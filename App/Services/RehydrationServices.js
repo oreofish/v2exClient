@@ -11,7 +11,7 @@ const updateReducers = (store: Object) => {
   // Check to ensure latest reducer version
   AsyncStorage.getItem('reducerVersion').then((localVersion) => {
     if (localVersion !== reducerVersion) {
-      console.tron.display({
+      console.log({
         name: 'PURGE',
         value: {
           'Old Version:': localVersion,

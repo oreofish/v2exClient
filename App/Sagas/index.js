@@ -22,11 +22,11 @@ const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function * root () {
+export default function * root (state) {
   yield [
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-    fork(loginFlow),
+    fork(loginFlow, state.login),
     // some sagas receive extra parameters in addition to an action
     takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
   ]

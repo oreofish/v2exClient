@@ -14,12 +14,12 @@ export default () => {
 
   const store = configureStore(rootReducer, rootSaga)
 
-  if (module.hot) {
+/*  if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept(() => {
       store.replaceReducer(rootReducer)
     })
-  }
+  } */
 
   return store
 }

@@ -10,13 +10,14 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 import {Images} from '../Themes'
 
 import PlatformStyle from '../Lib/PlatformStyle'
-import LoginActions from '../Redux/LoginRedux'
+import LoginActions, {LOGGING_IN, HAS_LOGGED} from '../Redux/LoginRedux'
 // import I18n from 'react-native-i18n'
 
 type LoginPageProps = {
   username: string,
   password: string,
-  isLoading: boolean,
+  avatar: string,
+  status: number,
   errorMessage: string,
   attemptLogin: () => void
 }
@@ -32,13 +33,14 @@ class LoginPage extends Component {
   componentWillReceiveProps (newProps) {
     // this.forceUpdate()
     // Did the login attempt complete?
-    if (this.isLoading) {
+/*
+    if (this.props.isLoading) {
       Actions.pop()
     }
+*/
   }
 
   componentWillMount () {
-
   }
 
   componentWillUnmount () {
@@ -49,7 +51,7 @@ class LoginPage extends Component {
   }
 
   render () {
-    const { isLoading, errorMessage } = this.props
+    const { status, errorMessage } = this.props
 
     return (
       <View style={styles.container}>
@@ -71,6 +73,7 @@ class LoginPage extends Component {
               autoCapitalize='none'
               autoCorrect={false}
               returnKeyType='next'
+              value={this.props.username}
               onChangeText={(username) => this.props({username})}
               onSubmitEditing={() => this.refs['passwordField'].focus()}
               underlineColorAndroid='#FFFFFF' />
@@ -84,6 +87,7 @@ class LoginPage extends Component {
               autoCapitalize='none'
               autoCorrect={false}
               secureTextEntry
+              value={this.props.password}
               onChangeText={(password) => this.props({password})}
               onSubmitEditing={this.onSubmitButtonPress}
               underlineColorAndroid='#FFFFFF' />
@@ -95,10 +99,10 @@ class LoginPage extends Component {
         </View>
 
         <Button onPress={this.onSubmitButtonPress}
-          disabled={isLoading}
+          disabled={status === LOGGING_IN}
           style={styles.loginButtonText}
-          containerStyle={[styles.loginButtonContainer, isLoading ? styles.loginButtonContainerDisabled : {}]}>
-          {isLoading ? '登录中...' : '登录'}
+          containerStyle={[styles.loginButtonContainer, status === LOGGING_IN ? styles.loginButtonContainerDisabled : {}]}>
+          {status === LOGGING_IN ? '登录中...' : '登录'}
         </Button>
 
         {/* The view that will animate to match the keyboards height */}
@@ -108,12 +112,12 @@ class LoginPage extends Component {
   }
 
   onSubmitButtonPress = () => {
-    const { isLoading, username, password } = this.props
+    const { status, username, password } = this.props
     console.log(this.props)
     if (!username || !password || username.length === 0 || password.length === 0) {
       return
     }
-    if (!isLoading) {
+    if (status !== LOGGING_IN) {
       this.refs['usernameField'].blur()
       this.refs['passwordField'].blur()
 
@@ -199,12 +203,11 @@ const styles = PlatformStyle.create({
 })
 
 const mapStateToProps = (state) => {
-  console.log('LoginPage', 'mapStateToProps', state.login)
-  if (!state.login.isLoading && state.login.errorMessage != null) {
-    // close login page when login success
-    // is here the right place to close page?
+  const {status} = state.login
+  if (status === HAS_LOGGED) {
     Actions.pop()
   }
+
   return state.login
 }
 

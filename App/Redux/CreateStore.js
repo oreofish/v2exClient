@@ -53,7 +53,7 @@ export default (rootReducer, rootSaga) => {
   }
 
   // kick off root saga
-  sagaMiddleware.run(rootSaga)
+  sagaMiddleware.run(rootSaga, store.getState())
 
   return store
 }

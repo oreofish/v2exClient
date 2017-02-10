@@ -17,7 +17,7 @@ type MeTabProps = {
   user: Object,
   username: string,
   password: string,
-  isLoading: boolean,
+  status: number,
   errorMessage: string,
   logOut: () => void
 }

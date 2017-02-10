@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  loadUser: ['user'],
+  setUser: ['avatar'],
   loginRequest: ['username', 'password'],
   loginSuccess: ['username'],
   loginFailure: ['errorMessage'],
@@ -18,32 +18,36 @@ export default Creators
 
 /* ------------- Initial State ------------- */
 
+export const NOT_LOGIN = 'NOT_LOGIN'
+export const LOGGING_IN = 'LOGGING_IN'
+export const HAS_LOGGED = 'HAS_LOGGED'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
+
 export const INITIAL_STATE = Immutable({
-  user: null,
-  username: null,
-  password: null,
-  isLoading: false,
+  username: 'hehefish',
+  password: 'rewqrewq',
+  avatar: null,
+  status: NOT_LOGIN,
   errorMessage: null
 })
 
 /* ------------- Reducers ------------- */
 
 // load local cached user info
-export const load = (state: Object, { user }: Object) => state.merge({ user: user })
+export const setUser = (state: Object, { avatar }: Object) => state.merge({ avatar: avatar })
 
 // we're attempting to login
-export const request = (state: Object) => state.merge({ isLoading: true, errorMessage: null })
+export const request = (state: Object) => state.merge({ status: LOGGING_IN, errorMessage: null })
 
 // we've successfully logged in
 export const success = (state: Object, { username }: Object) => {
-  console.log('loginSucceed', '--------------------')
-  state.merge({isLoading: false, errorMessage: null, username})
+  return state.merge({status: HAS_LOGGED, errorMessage: null, username})
 }
 
 // we've had a problem logging in
 export const failure = (state: Object, { errorMessage }: Object) => {
   console.log('loginFailure', errorMessage)
-  state.merge({isLoading: false, errorMessage})
+  return state.merge({status: LOGIN_FAILED, errorMessage})
 }
 
 // we've logged out
@@ -52,7 +56,7 @@ export const logout = (state: Object) => INITIAL_STATE
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.LOAD_USER]: load,
+  [Types.SET_USER]: setUser,
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,
