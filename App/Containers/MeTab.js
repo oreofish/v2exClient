@@ -5,7 +5,7 @@ import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import PlatformStyle from '../Lib/PlatformStyle'
-import LoginActions from '../Redux/LoginRedux'
+import LoginActions, {HAS_LOGGED} from '../Redux/LoginRedux'
 
 import PageContainer from '../Components/common/PageContainer'
 import ActionRow from './../Components/ActionRow'
@@ -14,9 +14,9 @@ import AvatarImage from '../Components/common/AvatarImage'
 import {Images} from '../Themes'
 
 type MeTabProps = {
-  user: Object,
   username: string,
   password: string,
+  avatar: string,
   status: number,
   errorMessage: string,
   logOut: () => void
@@ -27,21 +27,13 @@ class MeTab extends Component {
   props: MeTabProps
 
   componentDidMount () {
-/*
-    SessionManager.listenToStatusChanged((user) => {
-      console.log('listenToStatusChanged:', user)
-      this.loadCurrentUser(user)
-    })
-*/
-
-    // this.loadCurrentUser(SessionManager.getCurrentUser())
   }
 
   render () {
     return (
       <PageContainer isTab>
         <ScrollView style={styles.wrapper}>
-          {!this.props.user ? this.renderNotLoggedIn() : this.renderLoggedIn()}
+          {this.props.status === HAS_LOGGED ? this.renderLoggedIn() : this.renderNotLoggedIn()}
         </ScrollView>
       </PageContainer>
     )
@@ -66,18 +58,15 @@ class MeTab extends Component {
     )
   }
 
-  //           <ActionRow title="设置" onPress={this.onSettingPress} iconImage={SettingIcon} />
-
   renderLoggedIn = () => {
-    const { name, avatarURI } = this.props.user
-    console.log('avatarURI:', avatarURI, name, this)
+    const { username, avatar } = this.props
     return (
       <View>
         <View style={styles.topBox}>
           <View style={styles.emptyAvatar}>
-            <AvatarImage uri={avatarURI} style={styles.avatarImage} />
+            <AvatarImage uri={avatar} style={styles.avatarImage} />
           </View>
-          <Text style={styles.usernameText}>{name}</Text>
+          <Text style={styles.usernameText}>{username}</Text>
         </View>
         <View style={styles.bottomBox}>
           <ActionRow showSeparator={false} title='注销' onPress={this.onLogOutPress} iconImage={Images.signout_icon} />

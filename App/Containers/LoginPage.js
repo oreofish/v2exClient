@@ -10,7 +10,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 import {Images} from '../Themes'
 
 import PlatformStyle from '../Lib/PlatformStyle'
-import LoginActions, {LOGGING_IN, HAS_LOGGED} from '../Redux/LoginRedux'
+import LoginActions, {LOGGING_IN} from '../Redux/LoginRedux'
 // import I18n from 'react-native-i18n'
 
 type LoginPageProps = {
@@ -26,18 +26,7 @@ class LoginPage extends Component {
 
   props: LoginPageProps
 
-/*  constructor (props) {
-    super(props)
-  } */
-
   componentWillReceiveProps (newProps) {
-    // this.forceUpdate()
-    // Did the login attempt complete?
-/*
-    if (this.props.isLoading) {
-      Actions.pop()
-    }
-*/
   }
 
   componentWillMount () {
@@ -203,11 +192,6 @@ const styles = PlatformStyle.create({
 })
 
 const mapStateToProps = (state) => {
-  const {status} = state.login
-  if (status === HAS_LOGGED) {
-    Actions.pop()
-  }
-
   return state.login
 }
 

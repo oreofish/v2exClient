@@ -46,7 +46,6 @@ export const success = (state: Object, { username }: Object) => {
 
 // we've had a problem logging in
 export const failure = (state: Object, { errorMessage }: Object) => {
-  console.log('loginFailure', errorMessage)
   return state.merge({status: LOGIN_FAILED, errorMessage})
 }
 
