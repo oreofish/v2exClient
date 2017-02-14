@@ -1,8 +1,8 @@
 import test from 'ava'
 import FixtureAPI from '../../App/Services/FixtureApi'
 import { put, call } from 'redux-saga/effects'
-import { getTemperature } from '../../App/Sagas/TemperatureSagas'
-import TemperatureActions from '../../App/Redux/TemperatureRedux'
+import { getTemperature } from '../../App/Sagas/TopicSagas'
+import TemperatureActions from '../../App/Redux/TopicRedux'
 
 const stepper = (fn) => (mock) => fn.next(mock).value
 

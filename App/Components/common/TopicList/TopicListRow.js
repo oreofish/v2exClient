@@ -7,7 +7,9 @@ import ReplyCount from './ReplyCount'
 class TopicListRow extends Component {
 
   render () {
-    const { id, title, nodeName, /* nodeURI, */ authorName, /* authorURI, */ replyCount, authorAvatarURI, /* time, timestamp, pinned, */ onRowPress, isNode } = this.props
+    const { id, title, nodeName, /* nodeURI, */ authorName,
+      /* authorURI, */ replyCount, authorAvatarURI,
+      /* time, timestamp, pinned, */ onRowPress, isNode } = this.props
 
     let nodeView = null
     if (!isNode) {

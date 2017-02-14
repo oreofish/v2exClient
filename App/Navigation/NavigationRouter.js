@@ -13,7 +13,6 @@ import PlatformStyle from '../Lib/PlatformStyle'
 // screens identified by the router
 import DiscoveryTab from '../Containers/DiscoveryTab'
 import NodesTab from '../Containers/NodesTab'
-import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
 import LoginScreen from '../Containers/LoginPage'
 
 import TopicPageContainer from '../Containers/TopicPage'
@@ -51,12 +50,6 @@ class NavigationRouter extends Component {
             <Scene key='NodesTab'
               component={NodesTab}
               title='组件'
-              titleStyle={styles.titleStyle}
-              navigationBarStyle={styles.navigationBarStyle}
-              icon={TabIcon} />
-            <Scene key='usageExamples'
-              component={UsageExamplesScreen}
-              title='Usage'
               titleStyle={styles.titleStyle}
               navigationBarStyle={styles.navigationBarStyle}
               icon={TabIcon} />

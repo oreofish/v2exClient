@@ -6,8 +6,6 @@ import moment from 'moment'
 
 import StringUtilities from '../../../Lib/StringUtils'
 import V2Networking from '../../../Services/V2exNetworking'
-import SessionManager from '../../../Lib/SessionManager'
-
 import GiftedListView from '../GiftedListView'
 import TopicListRow from './TopicListRow'
 
@@ -28,25 +26,25 @@ class TopicListPage extends Component {
     V2Networking.get(uri)
       .then($ => {
         // Handle session status firstly
-        SessionManager.setCurrentUser($)
+        // SessionManager.setCurrentUser($)
 
         const topicElements = $('#Main > div.box > div.cell.item, #Main > div.box > #TopicsNode > .cell')
         const topicList = []
 
         for (var index = 0; index < topicElements.length; index++) {
           var element = topicElements[index]
-          const e = $(element)
+          const ele = $(element)
 
-          const id = Number(StringUtilities.matchFirst(e.find('.item_title a').attr('href'), /t\/(\d+)/))
-          const title = e.find('.item_title a').text()
-          const nodeName = e.find('a.node').text()
-          const nodeURI = e.find('a.node').attr('href')
-          const authorName = e.find('span.small.fade strong a:first-child').html() // FIXME: Why .text() would double the username?
-          const authorURI = e.find('span.small.fade strong a').attr('href')
-          const replyCount = Number(e.find('td:last-child').text())
-          const authorAvatarURI = e.find('img.avatar').attr('src')
-          const pinned = e.attr('style') !== ''
-          const timeMatches = e.find('span.small.fade').text().match(/•\s*([a-zA-Z0-9 \u4e00-\u9fa5]+)前/)
+          const id = Number(StringUtilities.matchFirst(ele.find('.item_title a').attr('href'), /t\/(\d+)/))
+          const title = ele.find('.item_title a').text()
+          const nodeName = ele.find('a.node').text()
+          const nodeURI = ele.find('a.node').attr('href')
+          const authorName = ele.find('span.small.fade strong a:first-child').html() // FIXME: Why .text() would double the username?
+          const authorURI = ele.find('span.small.fade strong a').attr('href')
+          const replyCount = Number(ele.find('td:last-child').text())
+          const authorAvatarURI = ele.find('img.avatar').attr('src')
+          const pinned = ele.attr('style') !== ''
+          const timeMatches = ele.find('span.small.fade').text().match(/•\s*([a-zA-Z0-9 \u4e00-\u9fa5]+)前/)
           var time = null
           if (timeMatches !== null && timeMatches.length > 0) {
             time = timeMatches[1]

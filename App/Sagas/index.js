@@ -1,24 +1,17 @@
 import { fork, takeLatest } from 'redux-saga/effects'
-import API from '../Services/Api'
-import FixtureAPI from '../Services/FixtureApi'
-import DebugSettings from '../Config/DebugSettings'
+// import FixtureAPI from '../Services/FixtureApi'
+// import DebugSettings from '../Config/DebugSettings'
 
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux'
-import { TemperatureTypes } from '../Redux/TemperatureRedux'
+import { TopicTypes } from '../Redux/TopicRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { loginFlow } from './LoginSagas'
-import { getTemperature } from './TemperatureSagas'
-
-/* ------------- API ------------- */
-
-// The API we use is only used from Sagas, so we create it here and pass along
-// to the sagas which need it.
-const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
+import { getTopic } from './TopicSagas'
 
 /* ------------- Connect Types To Sagas ------------- */
 
@@ -28,6 +21,6 @@ export default function * root (state) {
     takeLatest(StartupTypes.STARTUP, startup),
     fork(loginFlow, state.login),
     // some sagas receive extra parameters in addition to an action
-    takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
+    takeLatest(TopicTypes.TOPIC_REQUEST, getTopic)
   ]
 }

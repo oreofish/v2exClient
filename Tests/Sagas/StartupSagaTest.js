@@ -1,7 +1,7 @@
 import test from 'ava'
 import { select, put } from 'redux-saga/effects'
 import { selectTemperature, startup } from '../../App/Sagas/StartupSagas'
-import TemperatureActions from '../../App/Redux/TemperatureRedux'
+import TemperatureActions from '../../App/Redux/TopicRedux'
 
 const stepper = (fn) => (mock) => fn.next(mock).value
 

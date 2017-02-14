@@ -1,5 +1,5 @@
 import test from 'ava'
-import Actions, { reducer, INITIAL_STATE } from '../../App/Redux/TemperatureRedux'
+import Actions, { reducer, INITIAL_STATE } from '../../App/Redux/TopicRedux'
 
 test('request', (t) => {
   const cityName = 'someCity'

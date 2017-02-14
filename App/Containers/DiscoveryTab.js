@@ -9,7 +9,7 @@ import { Images } from '../Themes'
 
 import {connect} from 'react-redux'
 
-const tabData = [
+const tabs = [
   { slug: 'all', name: '全部' },
   { slug: 'hot', name: '最热' },
   { slug: 'r2', name: 'R2' },
@@ -31,7 +31,9 @@ class DiscoveryTabPage extends Component {
   };
 
   componentWillMount () {
-    this._initViews()
+    if (this.segmentedControlTitles.length === 0) {
+      tabs.map((tab) => this.segmentedControlTitles.push(tab.name))
+    }
   }
 
   componentDidMount () {
@@ -41,17 +43,8 @@ class DiscoveryTabPage extends Component {
     })
   }
 
-  onSegmentedControlButtonPress (index) {
+  onSegmentedControlButtonPress = (index) => {
     this.setState({ index })
-  }
-
-  _initViews () {
-    if (this.segmentedControlTitles.length === 0) {
-      for (var i = 0; i < tabData.length; i++) {
-        const data = tabData[i]
-        this.segmentedControlTitles.push(data.name)
-      }
-    }
   }
 
   render () {
@@ -63,7 +56,7 @@ class DiscoveryTabPage extends Component {
           ref={(ref) => {
             this.segmentedControl = ref
           }}
-          onPress={this.onSegmentedControlButtonPress.bind(this)}
+          onPress={this.onSegmentedControlButtonPress}
           style={styles.segmentedControl} />
         {this.renderContent()}
       </PageContainer>
@@ -71,14 +64,12 @@ class DiscoveryTabPage extends Component {
   }
 
   renderContent = () => {
-    return this.renderPage(tabData[this.state.index])
+    return this.renderPage(tabs[this.state.index])
   };
 
   renderPage (data) {
     return (
-      <TopicList
-        key={`tab_slug_${data.slug}`}
-        slug={data.slug} />
+      <TopicList key={`tab_slug_${data.slug}`} slug={data.slug} />
     )
   }
 
