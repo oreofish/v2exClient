@@ -13,6 +13,7 @@ import PlatformStyle from '../Lib/PlatformStyle'
 // screens identified by the router
 import DiscoveryTab from '../Containers/DiscoveryTab'
 import NodesTab from '../Containers/NodesTab'
+import PresentationTab from '../Containers/PresentationTab'
 import LoginScreen from '../Containers/LoginPage'
 
 import TopicPageContainer from '../Containers/TopicPage'
@@ -49,6 +50,12 @@ class NavigationRouter extends Component {
               title='Ignite' />
             <Scene key='NodesTab'
               component={NodesTab}
+              title='组件'
+              titleStyle={styles.titleStyle}
+              navigationBarStyle={styles.navigationBarStyle}
+              icon={TabIcon} />
+            <Scene key='PresentationTab'
+              component={PresentationTab}
               title='组件'
               titleStyle={styles.titleStyle}
               navigationBarStyle={styles.navigationBarStyle}

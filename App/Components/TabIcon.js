@@ -21,9 +21,9 @@ class TabIcon extends Component {
         return <MaterialIcon name='dashboard' size={defaultIconSize + 2} color={iconColor} />
       case 'NodesTab-s':
         return <MaterialIcon name='dashboard' size={defaultIconSize + 2} color={selectedIconColor} />
-      case 'usageExamples':
+      case 'PresentationTab':
         return <Icon name='bell' size={defaultIconSize - 2} color={iconColor} style={styles.searchIcon} />
-      case 'usageExamples-s':
+      case 'PresentationTab-s':
         return <Icon name='bell' size={defaultIconSize - 2} color={selectedIconColor} style={styles.searchIcon} />
       case 'MeTab':
         return <Icon name='user' size={defaultIconSize - 0} color={iconColor} />

@@ -10,16 +10,12 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 // Styles
 import styles from './Styles/PresentationScreenStyle'
 
-export default class PresentationScreen extends React.Component {
+export default class PresentationTab extends React.Component {
   render () {
     return (
       <PageContainer isTab>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.clearLogo} style={styles.logo} />
-          </View>
-
           <View style={styles.section} >
             <Text style={styles.sectionText} >
               Default screens for development, debugging, and alpha testing
