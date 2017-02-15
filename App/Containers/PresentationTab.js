@@ -27,8 +27,8 @@ export default class PresentationTab extends React.Component {
             Camera
           </RoundedButton>
 
-          <RoundedButton onPress={NavigationActions.deviceInfo}>
-            Device Info Screen
+          <RoundedButton onPress={NavigationActions.mapbox}>
+            MapBox
           </RoundedButton>
 
           <View style={styles.centered}>

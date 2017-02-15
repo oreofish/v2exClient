@@ -23,6 +23,7 @@ import UserReply from '../Containers/UserReply'
 import NodePage from '../Containers/Node'
 import NewTopicPage from '../Containers/NewTopic'
 import CameraPage from '../Containers/CameraPage'
+import MapboxPage from '../Containers/MapboxPage'
 
 import ListviewExample from '../Containers/ListviewExample'
 import ListviewGridExample from '../Containers/ListviewGridExample'
@@ -77,6 +78,7 @@ class NavigationRouter extends Component {
           <Scene key='newTopic' component={NewTopicPage} title='创建话题' />
 
           <Scene key='camera' component={CameraPage} title='拍照' />
+          <Scene key='mapbox' component={MapboxPage} title='Mapbox' />
 
           <Scene key='login' component={LoginScreen} direction='vertical' title='Login' hideNavBar />
           <Scene key='listviewExample' component={ListviewExample} title='Listview Example' rightTitle='Example' onRight={() => window.alert('Example Pressed')} />
