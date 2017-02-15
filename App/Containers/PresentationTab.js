@@ -23,8 +23,8 @@ export default class PresentationTab extends React.Component {
             </Text>
           </View>
 
-          <RoundedButton onPress={NavigationActions.theme}>
-            Theme Screen
+          <RoundedButton onPress={NavigationActions.camera}>
+            Camera
           </RoundedButton>
 
           <RoundedButton onPress={NavigationActions.deviceInfo}>

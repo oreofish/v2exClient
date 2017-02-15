@@ -37,6 +37,8 @@
 		B4903B5E1B904DEC8F69EDDA /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5435A9353F104403AA331887 /* SimpleLineIcons.ttf */; };
 		E80A9E1DC50B476B93FDE7A3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A3108BDDAEF41869E03091C /* Zocial.ttf */; };
 		C29F072796B4437B9CF67B7C /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72210F2B0EEC4246AB9AAA68 /* libRNCookieManagerIOS.a */; };
+		3FFE438AE3F346889C46B47F /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CA8FF71DD8432581BCCA4B /* libRCTCamera.a */; };
+		2EDB5D006886475D9EA394CE /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 488580896CAD4D5791BA5DE1 /* MaterialCommunityIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,9 @@
 		8A3108BDDAEF41869E03091C /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		37A299BEEAAD44F0A8554FEC /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; name = "RNCookieManagerIOS.xcodeproj"; path = "../node_modules/react-native-cookies/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		72210F2B0EEC4246AB9AAA68 /* libRNCookieManagerIOS.a */ = {isa = PBXFileReference; name = "libRNCookieManagerIOS.a"; path = "libRNCookieManagerIOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		908B3919E7FA4C4BB13230AE /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		05CA8FF71DD8432581BCCA4B /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		488580896CAD4D5791BA5DE1 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +196,7 @@
 				FCB25A00532A4C02BA00EE52 /* libAirMaps.a in Frameworks */,
 				86E16B0A263A4EE89E273822 /* libRNVectorIcons.a in Frameworks */,
 				C29F072796B4437B9CF67B7C /* libRNCookieManagerIOS.a in Frameworks */,
+				3FFE438AE3F346889C46B47F /* libRCTCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +325,7 @@
 				4588EBF5D4534319A23174CE /* AirMaps.xcodeproj */,
 				42F725370DDD476FBB7DD4A4 /* RNVectorIcons.xcodeproj */,
 				37A299BEEAAD44F0A8554FEC /* RNCookieManagerIOS.xcodeproj */,
+				908B3919E7FA4C4BB13230AE /* RCTCamera.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -365,6 +372,7 @@
 				10E89E4ED63544F2ADF4EE52 /* Octicons.ttf */,
 				5435A9353F104403AA331887 /* SimpleLineIcons.ttf */,
 				8A3108BDDAEF41869E03091C /* Zocial.ttf */,
+				488580896CAD4D5791BA5DE1 /* MaterialCommunityIcons.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -581,6 +589,7 @@
 				6B5C650C975A4863A9B0AF9F /* Octicons.ttf in Resources */,
 				B4903B5E1B904DEC8F69EDDA /* SimpleLineIcons.ttf in Resources */,
 				E80A9E1DC50B476B93FDE7A3 /* Zocial.ttf in Resources */,
+				2EDB5D006886475D9EA394CE /* MaterialCommunityIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +675,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -682,6 +692,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/v2exAndroid.app/v2exAndroid";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -707,6 +718,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-cookies/RNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = "v2exAndroid/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -734,6 +746,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-cookies/RNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = "v2exAndroid/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -790,6 +803,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-cookies/RNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -835,6 +849,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-cookies/RNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
