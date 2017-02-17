@@ -1,5 +1,5 @@
 import test from 'ava'
-import V2exApi from '../../App/Services/V2exApi'
+import V2exApi from '../../App/Services/WebApi'
 import fetchMock from 'fetch-mock'
 
 test('http request to v2ex: signin form', (t) => {

@@ -1,7 +1,6 @@
 import { take, fork, put, call } from 'redux-saga/effects'
 import LoginActions, {NOT_LOGIN} from '../Redux/LoginRedux'
-import SessionManager from '../Lib/SessionManager'
-import V2exApi from '../Services/V2exApi'
+import V2exApi from '../Services/WebApi'
 import ImageUtils from '../Lib/ImageUtils'
 import {Actions} from 'react-native-router-flux'
 
@@ -67,9 +66,6 @@ function * fetchUserInfo (username) {
 export function * loginFlow (loginState) {
   console.log('========================', 'loginFlow', loginState)
   while (true) {
-    // read local cached user
-    // const user = SessionManager.getCurrentUser()
-
     if (loginState.status === NOT_LOGIN) {
       // waiting for login request
       const {username, password} = yield take('LOGIN_REQUEST')
@@ -80,16 +76,7 @@ export function * loginFlow (loginState) {
       yield call(fetchUserInfo, loginState.username)
     }
 
-    const action = yield take(['LOGOUT', 'LOGIN_FAILURE']) // waiting for logout or failure
-    if (action.type === 'LOGOUT') {
-      SessionManager.logOut().then(res => {
-        console.log('log out succeed:', res)
-      }, err => {
-        console.log('log out err:', err)
-      })
-    } else {
-      console.log('loginFlow:', 'LOGIN_FAILURE')
-    }
+    // const action = yield take(['LOGOUT', 'LOGIN_FAILURE']) // waiting for logout or failure
     // yield put(LoginActions.logout())
   }
 }

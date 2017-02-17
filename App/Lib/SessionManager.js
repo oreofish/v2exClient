@@ -1,4 +1,4 @@
-import V2exApi from '../Services/V2exApi'
+import V2exApi from '../Services/WebApi'
 // noinspection JSUnresolvedVariable
 import {EventEmitter} from 'events'
 import {Alert} from 'react-native'
