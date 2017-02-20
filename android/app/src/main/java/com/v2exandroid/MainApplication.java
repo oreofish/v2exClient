@@ -12,7 +12,6 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.psykar.cookiemanager.CookieManagerPackage;
 
 import android.os.Bundle;
 import com.facebook.react.modules.network.ReactCookieJarContainer;
@@ -41,8 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
-            new ReactNativeConfigPackage(),
-            new CookieManagerPackage()
+            new ReactNativeConfigPackage()
       );
     }
   };

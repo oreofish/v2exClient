@@ -1,7 +1,3 @@
-/**
- * @providesModule wetoo-style
- */
-
 import {StyleSheet, Platform} from 'react-native'
 
 const PlatformStyle = {

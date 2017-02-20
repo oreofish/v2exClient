@@ -1,7 +1,6 @@
 package com.v2exandroid;
 
 import com.facebook.react.ReactActivity;
-import com.psykar.cookiemanager.CookieManagerPackage;
 
 public class MainActivity extends ReactActivity {
 

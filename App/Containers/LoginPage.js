@@ -14,6 +14,7 @@ import LoginActions, {LOGGING_IN} from '../Redux/LoginRedux'
 // import I18n from 'react-native-i18n'
 
 type LoginPageProps = {
+  ip: string,
   username: string,
   password: string,
   avatar: string,
@@ -54,6 +55,19 @@ class LoginPage extends Component {
         <Image source={Images.logo} style={styles.topLogo} />
 
         <View style={styles.loginFormWrapper}>
+          <View style={styles.formInputWrapper}>
+            <TextInput placeholder='iLo主机IP'
+              style={styles.formInput}
+              keyboardType='numbers-and-punctuation'
+              ref='ipField'
+              autoCapitalize='none'
+              autoCorrect={false}
+              returnKeyType='next'
+              value={this.props.ip}
+              onChangeText={(ip) => this.props({ip})}
+              onSubmitEditing={() => this.refs['usernameField'].focus()}
+              underlineColorAndroid='#FFFFFF' />
+          </View>
           <View style={styles.formInputWrapper}>
             <TextInput placeholder='Email 或 用户名'
               style={styles.formInput}
@@ -101,16 +115,17 @@ class LoginPage extends Component {
   }
 
   onSubmitButtonPress = () => {
-    const { status, username, password } = this.props
+    const { ip, status, username, password } = this.props
     console.log(this.props)
     if (!username || !password || username.length === 0 || password.length === 0) {
       return
     }
     if (status !== LOGGING_IN) {
+      this.refs['ipField'].blur()
       this.refs['usernameField'].blur()
       this.refs['passwordField'].blur()
 
-      this.props.attemptLogin(username, password)
+      this.props.attemptLogin(ip, username, password)
     }
   }
 }
@@ -197,7 +212,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (ip, username, password) => dispatch(LoginActions.loginRequest(ip, username, password))
   }
 }
 

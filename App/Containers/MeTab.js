@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {View, Text, ScrollView, TouchableWithoutFeedback} from 'react-native'
+import {View, Text, Image, ScrollView, TouchableWithoutFeedback} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -9,7 +9,6 @@ import LoginActions, {HAS_LOGGED} from '../Redux/LoginRedux'
 
 import PageContainer from '../Components/common/PageContainer'
 import ActionRow from './../Components/ActionRow'
-import AvatarImage from '../Components/common/AvatarImage'
 
 import {Images} from '../Themes'
 
@@ -59,12 +58,12 @@ class MeTab extends Component {
   }
 
   renderLoggedIn = () => {
-    const { username, avatar } = this.props
+    const { username } = this.props
     return (
       <View>
         <View style={styles.topBox}>
           <View style={styles.emptyAvatar}>
-            <AvatarImage uri={avatar} style={styles.avatarImage} />
+            <Image style={styles.avatarImage} />
           </View>
           <Text style={styles.usernameText}>{username}</Text>
         </View>

@@ -1,11 +1,11 @@
 // import {AsyncStorage} from 'react-native'
 import Networking from './Networking'
 
-class V2exApi {
+class WebApi {
 
-  static async signin (data) {
+  static async signin (host, data) {
     try {
-      return Networking.post('/json/login_session', data)
+      return Networking.post(host, '/json/login_session', data)
     } catch (error) {
       console.log('error retrieving data:', error)
     }
@@ -16,4 +16,4 @@ class V2exApi {
   }
 }
 
-export default V2exApi
+export default WebApi

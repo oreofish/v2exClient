@@ -20,7 +20,7 @@ class NavigationRouter extends Component {
     return (
       <Router>
         <Scene key='root' titleStyle={styles.titleStyle} navigationBarStyle={styles.navigationBarStyle}>
-          <Scene key='MeTab'
+          <Scene initial key='MeTab'
             component={MeTab}
             title='我'
             titleStyle={styles.titleStyle}
