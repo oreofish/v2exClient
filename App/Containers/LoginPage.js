@@ -81,7 +81,7 @@ class LoginPage extends Component {
               onSubmitEditing={() => this.refs['passwordField'].focus()}
               underlineColorAndroid='#FFFFFF' />
           </View>
-          <View style={[styles.formInputWrapper, styles.formInputWrapperForPassword]}>
+          <View style={[styles.formInputWrapper, styles.formInputWrapper]}>
             <TextInput placeholder='密码'
               style={styles.formInput}
               keyboardType='default'
@@ -116,7 +116,8 @@ class LoginPage extends Component {
 
   onSubmitButtonPress = () => {
     const { ip, status, username, password } = this.props
-    console.log(this.props)
+    console.log('-------------')
+    console.log(ip, status, username, password)
     if (!username || !password || username.length === 0 || password.length === 0) {
       return
     }
@@ -125,6 +126,8 @@ class LoginPage extends Component {
       this.refs['usernameField'].blur()
       this.refs['passwordField'].blur()
 
+      console.log('-------------')
+      console.log(ip, username, password)
       this.props.attemptLogin(ip, username, password)
     }
   }
@@ -162,10 +165,8 @@ const styles = PlatformStyle.create({
   },
   formInputWrapper: {
     borderBottomWidth: 1,
-    borderBottomColor: '#D8E0E4'
-  },
-  formInputWrapperForPassword: {
-    marginTop: 18
+    borderBottomColor: '#D8E0E4',
+    marginBottom: 12
   },
   formInput: {
     height: 30,

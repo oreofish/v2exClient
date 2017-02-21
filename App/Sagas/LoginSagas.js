@@ -13,6 +13,8 @@ function* performLogin (ip, username, password) {
     }
 
     let response = yield WebApi.signin(ip, data)
+    console.log('------------2')
+    console.log(response)
     if (response.status === 200) {
       const json = response.data
       if (json) {
@@ -27,6 +29,7 @@ function* performLogin (ip, username, password) {
       yield put(LoginActions.loginFailure('未知错误，请重试或联系开发者'))
     }
   } catch (error) {
+    console.log('--------error', error)
     yield put(LoginActions.loginFailure('网络错误，请重试'))
   }
 }

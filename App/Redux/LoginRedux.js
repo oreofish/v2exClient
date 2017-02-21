@@ -24,9 +24,9 @@ export const HAS_LOGGED = 'HAS_LOGGED'
 export const LOGIN_FAILED = 'LOGIN_FAILED'
 
 export const INITIAL_STATE = Immutable({
-  ip: null,
-  username: null,
-  password: null,
+  ip: '192.168.1.110',
+  username: 'administrator',
+  password: 'YCkUjruBZo1d',
   sessionKey: null,
   avatar: null,
   status: NOT_LOGIN,
@@ -39,7 +39,7 @@ export const INITIAL_STATE = Immutable({
 export const setUser = (state: Object, { avatar }: Object) => state.merge({ avatar: avatar })
 
 // we're attempting to login
-export const request = (state: Object) => state.merge({ status: LOGGING_IN, errorMessage: null })
+export const request = (state: Object, { ip, username, sessionKey }: Object) => state.merge({ status: LOGGING_IN, ip, username, errorMessage: null })
 
 // we've successfully logged in
 export const success = (state: Object, { ip, username, sessionKey }: Object) => {

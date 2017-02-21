@@ -8,7 +8,7 @@ import { Scene, Router } from 'react-native-router-flux'
 
 import PlatformStyle from '../Lib/PlatformStyle'
 // screens identified by the router
-import LoginScreen from '../Containers/LoginPage'
+import LoginPage from '../Containers/LoginPage'
 import MeTab from '../Containers/MeTab'
 
 /* **************************
@@ -26,7 +26,7 @@ class NavigationRouter extends Component {
             titleStyle={styles.titleStyle}
             navigationBarStyle={styles.navigationBarStyle} />
 
-          <Scene key='login' component={LoginScreen} direction='vertical' title='Login' hideNavBar />
+          <Scene key='login' component={LoginPage} direction='vertical' title='Login' hideNavBar />
         </Scene>
       </Router>
     )
